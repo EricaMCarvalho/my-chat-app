@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Message = require('./Message');
 
 const ChannelSchema = new mongoose.Schema({
   name: {
@@ -31,6 +32,10 @@ const ChannelSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+});
+
+ChannelSchema.post('findOneAndDelete', async function () {
+  await Message.deleteMany({ channel: this._id });
 });
 
 module.exports = mongoose.model('Channel', ChannelSchema);

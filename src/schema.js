@@ -2,28 +2,51 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
   type Query {
-    hello: String!
+    user(googleId: ID!): User!
+    channel(_id: ID!): Channel!
+    message(_id: ID!): Message!
+  }
+
+  type Mutation {
+    createUser(googleId: ID!): User!
+    createChannel(data: createChannelInput!): Channel!
+    createMessage(data: createMessageInput!): Message!
+    deleteChannel(_id: ID!): ID!
+    deleteMessage(_id: ID!): ID!
+  }
+
+  input createChannelInput {
+    name: String!
+    public: Boolean
+    admin: ID!
+  }
+
+  input createMessageInput {
+    content: String!
+    author: ID!
+    channel: ID!
   }
 
   type User {
-    id: ID!
+    googleId: ID!
+    _id: ID!
     username: String
-    channels: [Channel!]!
+    channels: [Channel!]
   }
 
   type Channel {
-    id: ID!
+    _id: ID!
     name: String!
     public: Boolean!
-    reatedAt: String!
+    createdAt: String!
     members: [User!]!
-    messages: [Message!]!
+    messages: [Message!]
     admin: User!
   }
 
   type Message {
-    id: ID!
-    text: String!
+    _id: ID!
+    content: String!
     createdAt: String!
     author: User!
     channel: Channel!

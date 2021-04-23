@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
   googleId: String,
-  username: {
-    type: String,
-    unique: true,
-  },
+  username: String,
   channels: [
     {
       type: mongoose.Schema.Types.ObjectId,

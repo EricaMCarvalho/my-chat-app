@@ -3,6 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 const colors = require('colors');
 
 const Query = require('./resolvers/Query');
+const Mutation = require('./resolvers/Mutation');
 
 // Load env variables
 require('dotenv').config();
@@ -17,6 +18,7 @@ const server = new ApolloServer({
   typeDefs: require('./schema'),
   resolvers: {
     Query,
+    Mutation,
   },
 });
 
