@@ -2,6 +2,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const colors = require('colors');
 
+// Require resolvers
 const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
 

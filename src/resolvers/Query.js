@@ -4,12 +4,24 @@ const Message = require('../models/Message');
 
 module.exports = {
   user(parent, { googleId }, ctx, info) {
-    return User.findOne({ googleId });
+    const user = User.findOne({ googleId });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    return user;
   },
   channel(parent, { _id }, ctx, info) {
-    return Channel.findById(_id);
+    const channel = Channel.findById(_id);
+    if (!channel) {
+      throw new Error('Channel not found');
+    }
+    return channel;
   },
   message(parent, { _id }, ctx, info) {
-    return Message.findById(_id);
+    const message = Message.findById(_id);
+    if (!message) {
+      throw new Error('Message not found');
+    }
+    return message;
   },
 };

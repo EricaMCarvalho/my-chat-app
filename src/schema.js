@@ -11,8 +11,8 @@ module.exports = gql`
     createUser(googleId: ID!): User!
     createChannel(data: createChannelInput!): Channel!
     createMessage(data: createMessageInput!): Message!
-    deleteChannel(_id: ID!): ID!
-    deleteMessage(_id: ID!): ID!
+    deleteChannel(_id: ID!): Channel!
+    deleteMessage(_id: ID!): Message!
   }
 
   input createChannelInput {
